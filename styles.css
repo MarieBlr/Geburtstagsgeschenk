@@ -1,8 +1,10 @@
 :root{
   /* --- Adjustable sizes / speeds --- */
   --arrow-size: 64px; /* size of the corner button */
-  --paper-zoom-scale: 1.12; /* zoom factor for papier.svg */
-  --papier-zoom-duration: 800ms; /* zoom duration */
+  --paper-size: 360px; /* same visual width as rolle.svg */
+  --paper-zoom-scale: 1.06; /* small zoom factor for paper */
+  --papier-zoom-duration: 700ms; /* paper zoom duration */
+  --map-fade-duration: 500ms; /* map fade duration */
   --pin-drop-duration: 600ms; /* pin fly-in duration */
   --anker-drop-duration: 700ms; /* anker fly-in duration */
   --boat-rock-duration: 2000ms; /* rock/swing duration for boat */
@@ -23,30 +25,107 @@ body{background:#fff}
 .center-wrap{position:relative;display:flex;align-items:center;justify-content:center}
 
 /* Persistent arrow button bottom-right */
-.corner-arrow{position:fixed;right:20px;bottom:20px;width:var(--arrow-size);height:var(--arrow-size);z-index:2000;cursor:pointer}
-.corner-arrow img{width:100%;height:100%;display:block}
+.corner-arrow{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:2000;
+  cursor:pointer;
+  border:none;
+  background:rgba(255,255,255,0.8);
+  color:#1a1a1a;
+  font-size:16px;
+  line-height:1;
+  font-weight:700;
+  padding:12px 18px;
+  border-radius:999px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.14);
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.corner-arrow:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,0.96);
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+}
+
+.corner-arrow:active{
+  transform:translateY(0);
+}
+
+.corner-arrow img{display:none}
 
 /* -- Scene-specific helpers -- */
-.scene img {max-width:90%;max-height:80%;display:block}
+.scene img {display:block;max-width:90%;max-height:80%}
 
 /* Scene 0: pale light blue background */
 .bg-pale-blue{background:#eaf6ff}
 .rolle {width:360px; /* adjustable */}
 
-/* papier zoom animation */
-.papier{transition:transform var(--papier-zoom-duration) ease, opacity .4s ease}
-.papier.zoom{transform:scale(var(--paper-zoom-scale))}
+/* Scene 1: paper in center, slight zoom, then fade to gold + map */
+.scene-1 .center-wrap{
+  position:relative;
+  width:100%;
+  height:100%;
+}
 
-/* map appears centered and large */
-.map{max-width:80%;max-height:80%}
+.papier{
+  width:var(--paper-size);
+  max-width:80vw;
+  opacity:1;
+  transform:scale(1);
+  transform-origin:center center;
+  transition:transform var(--papier-zoom-duration) ease, opacity var(--map-fade-duration) ease;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%) scale(1);
+  z-index:2;
+}
+
+.papier.zoom{
+  transform:translate(-50%, -50%) scale(var(--paper-zoom-scale));
+}
+
+.map{
+  width:min(68vw, 760px);
+  max-width:80%;
+  max-height:80%;
+  opacity:0;
+  transition:opacity var(--map-fade-duration) ease;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  z-index:1;
+}
 
 /* pin fly-in */
-.pin{position:absolute;left:50%;transform:translateX(-50%) translateY(-300%);transition:transform var(--pin-drop-duration) cubic-bezier(.2,.9,.2,1)}
-.pin.drop{transform:translateX(-50%) translateY(0%)}
+.pin{position:absolute;left:50%;top:50%;transform:translate(-50%, -50%) translateY(-240px);transition:transform var(--pin-drop-duration) cubic-bezier(.2,.9,.2,1);z-index:3;max-width:70px}
+.pin.drop{transform:translate(-50%, -50%) translateY(0)}
 
-/* Wave bar at top for scene 2 */
-.top-bar{position:absolute;top:0;left:0;width:100%;height:110px;background:#fff;display:flex;align-items:flex-end;justify-content:center;overflow:visible}
-.welle{height:120px;object-fit:cover}
+/* Wave bar at bottom for scene 2 */
+.top-bar{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:110px;
+  background:transparent;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  overflow:visible;
+  z-index:0;
+}
+
+.welle{
+  width:min(110vw, 1200px);
+  height:auto;
+  object-fit:contain;
+  display:block;
+  transform:translateY(18px);
+}
 
 /* boat rocking animation */
 .boat{width:200px;transition:transform .2s linear}
@@ -54,13 +133,29 @@ body{background:#fff}
 @keyframes rock{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(4px) rotate(6deg)}100%{transform:translateY(0) rotate(-6deg)}}
 
 /* anker and pin style */
-.anker{width:140px;position:relative;transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1);transform:translateY(-300%)}
+.anker{
+  width:220px;
+  max-width:38vw;
+  position:relative;
+  transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1);
+  transform:translateY(-300%);
+  z-index:2;
+}
+
 .anker.drop{transform:translateY(0%)}
 
 /* captain/crew placement */
-.people-row{display:flex;gap:40px;align-items:flex-start}
+.people-row{
+  display:flex;
+  gap:120px;
+  align-items:flex-end;
+  justify-content:center;
+  margin-top:18px;
+  z-index:2;
+}
+
 .person{display:flex;flex-direction:column;align-items:center}
-.person img{width:220px}
+.person img{width:220px; max-width:26vw}
 .caption{margin-top:10px;font-weight:700}
 
 /* boats row scene */
@@ -75,7 +170,7 @@ body{background:#fff}
 
 /* small responsiveness */
 @media (max-width:600px){
-  :root{--arrow-size:48px}
+  :root{--arrow-size:48px; --paper-size: 240px}
   .rolle{width:240px}
   .person img{width:140px}
 }

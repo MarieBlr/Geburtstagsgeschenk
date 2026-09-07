@@ -8,8 +8,9 @@
 
   // --- Adjustable timing variables (easy to find and edit) ---
   const cfg = {
-    papierZoomDuration: 800, // ms -> keep in sync with --papier-zoom-duration
-    waitAfterMapMs: 2000, // delay before pin drops
+    papierZoomDuration: 700, // ms -> paper zoom duration
+    mapRevealDelay: 150, // short wait after zoom before map is shown
+    mapVisibleDuration: 1800, // time map stays visible before pin drop
     scene2TextDelay: 3000, // ms until heading appears in scene 2
     ankerToPeopleDelay: 2000, // ms until captain appears after anker
     crewDelayAfterCaptain: 1000, // ms until crew appears after captain
@@ -17,53 +18,69 @@
 
   function clearAllTimeouts(){ timeouts.forEach(t=>clearTimeout(t)); timeouts=[] }
 
+  function resetTransient(){
+    app.style.backgroundColor = '';
+    app.classList.remove('bg-gold');
+
+    const papier = document.getElementById('papier');
+    const map = document.getElementById('map');
+    const pin = document.getElementById('pin');
+    if (papier) papier.classList.remove('zoom');
+    if (map) map.style.opacity = '0';
+    if (pin) pin.classList.remove('drop');
+  }
+
   function showScene(i){
     clearAllTimeouts();
     scenes.forEach((s,si)=>{ s.classList.toggle('visible', si===i) });
-    // reset transient styles used by animations
     resetTransient();
-    // scene-specific entry actions
+
     switch(i){
-      case 0: // initial
+      case 0:
         app.className = 'app bg-pale-blue';
         break;
 
-      case 1: // papier -> zoom -> gold -> map -> pin
-        app.className = 'app';
-        // start with pale blue removed
+      case 1:
+        app.className = 'app bg-gold';
         const papier = document.getElementById('papier');
         const map = document.getElementById('map');
         const pin = document.getElementById('pin');
-        // ensure initial states
-        papier.classList.remove('zoom'); map.style.opacity = 0; pin.classList.remove('drop');
-        // zoom papier
+
+        if (papier) {
+          papier.classList.remove('zoom');
+          papier.style.opacity = '1';
+        }
+        if (map) map.style.opacity = '0';
+        if (pin) pin.classList.remove('drop');
+
         timeouts.push(setTimeout(()=>{
-          papier.classList.add('zoom');
-        }, 50));
-        // after zoom, switch background to gold and reveal map
+          if (papier) papier.classList.add('zoom');
+        }, 80));
+
         timeouts.push(setTimeout(()=>{
           app.classList.add('bg-gold');
-          map.style.opacity = 1;
-        }, cfg.papierZoomDuration + 80));
-        // after map has been visible for some time, drop pin
+          app.classList.remove('bg-pale-blue');
+          if (map) map.style.opacity = '1';
+          if (papier) papier.style.opacity = '0';
+        }, cfg.papierZoomDuration + cfg.mapRevealDelay));
+
         timeouts.push(setTimeout(()=>{
-          pin.classList.add('drop');
-        }, cfg.papierZoomDuration + cfg.waitAfterMapMs));
+          if (pin) pin.classList.add('drop');
+        }, cfg.papierZoomDuration + cfg.mapRevealDelay + cfg.mapVisibleDuration));
         break;
 
-      case 2: // white background, top wave, boat rocks, then heading after delay
+      case 2:
         app.className = 'app';
         app.style.backgroundColor = '#ffffff';
         const boat = document.getElementById('boat');
         const scene2Heading = document.getElementById('scene2-heading');
-        boat.classList.remove('rock'); scene2Heading.style.opacity = 0;
-        // start rocking immediately
-        timeouts.push(setTimeout(()=> boat.classList.add('rock'), 80));
-        // show heading after configured delay
-        timeouts.push(setTimeout(()=> scene2Heading.style.opacity = 1, cfg.scene2TextDelay));
+        if (boat) boat.classList.remove('rock');
+        if (scene2Heading) scene2Heading.style.opacity = '0';
+        timeouts.push(setTimeout(()=> boat && boat.classList.add('rock'), 80));
+        timeouts.push(setTimeout(()=> scene2Heading && (scene2Heading.style.opacity = '1'), cfg.scene2TextDelay));
         break;
 
-      case 3: // pale blue; anker drops, then captain then crew; include steuerrad visible initially
+      case 3:
         app.className = 'app bg-pale-blue';
         const anker = document.getElementById('anker');
         const captain = document.getElementById('captain');
@@ -71,52 +88,46 @@
         const capCaption = document.getElementById('captain-caption');
         const crewCaption = document.getElementById('crew-caption');
         const steuerrad = document.getElementById('steuerrad');
-        // reset visuals
-        anker.classList.remove('drop'); captain.style.opacity=0; crew.style.opacity=0; capCaption.style.opacity=0; crewCaption.style.opacity=0; steuerrad.style.opacity=1;
-        // drop anker
-        timeouts.push(setTimeout(()=> anker.classList.add('drop'), 80));
-        // after anker settle, show captain (on right) then crew after short delay
+
+        if (anker) anker.classList.remove('drop');
+        if (captain) captain.style.opacity = '0';
+        if (crew) crew.style.opacity = '0';
+        if (capCaption) capCaption.style.opacity = '0';
+        if (crewCaption) crewCaption.style.opacity = '0';
+        if (steuerrad) steuerrad.style.opacity = '1';
+
+        timeouts.push(setTimeout(()=> anker && anker.classList.add('drop'), 80));
         timeouts.push(setTimeout(()=>{
-          captain.style.transition='opacity .4s ease'; captain.style.opacity=1; capCaption.style.opacity=1;
+          if (captain) captain.style.opacity = '1';
+          if (capCaption) capCaption.style.opacity = '1';
         }, cfg.ankerToPeopleDelay));
         timeouts.push(setTimeout(()=>{
-          crew.style.transition='opacity .4s ease'; crew.style.opacity=1; crewCaption.style.opacity=1;
+          if (crew) crew.style.opacity = '1';
+          if (crewCaption) crewCaption.style.opacity = '1';
         }, cfg.ankerToPeopleDelay + cfg.crewDelayAfterCaptain));
         break;
 
-      case 4: // boats row - remove previous items
+      case 4:
         app.className = 'app';
-        // hide steuerrad/captain/crew quickly
-        ['steuerrad','captain','crew','captain-caption','crew-caption','anker'].forEach(id=>{
-          const el = document.getElementById(id); if(el) el.style.opacity = 0;
+        ['steuerrad','captain','crew','captain-caption','crew-caption','anker'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.opacity = '0';
         });
         break;
 
-      case 5: // final white content
-        app.className = 'app'; app.style.backgroundColor = '#ffffff';
+      case 5:
+        app.className = 'app';
+        app.style.backgroundColor = '#ffffff';
         break;
     }
   }
 
-  function resetTransient(){
-    // clear inline backgroundColor set earlier
-    app.style.backgroundColor = '';
-    // ensure bg-gold class removed unless scene 1 explicitly sets it
-    app.classList.remove('bg-gold');
-  }
-
   function nextScene(){
-    idx = (idx + 1);
-    if(idx >= scenes.length) idx = scenes.length-1; // stop at last scene
+    idx = idx + 1;
+    if (idx >= scenes.length) idx = scenes.length - 1;
     showScene(idx);
   }
 
-  // init
-  btn.addEventListener('click', ()=>{
-    nextScene();
-  });
-
-  // expose for debugging in console
-  window.__story = {showScene, nextScene, cfg};
-
+  btn.addEventListener('click', () => nextScene());
+  window.__story = { showScene, nextScene, cfg };
 })();
