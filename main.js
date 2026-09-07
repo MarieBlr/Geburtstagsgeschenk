@@ -76,7 +76,7 @@
 
         timeouts.push(setTimeout(()=>{
           app.className = 'app bg-gold';
-          app.style.backgroundColor = '#d4af37';
+          app.style.backgroundColor = '#f1d16ac1';
           if (map) map.style.opacity = '1';
         }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay + cfg.goldMapDelay));
 
@@ -106,7 +106,7 @@
         const crew = document.getElementById('crew');
         const capCaption = document.getElementById('captain-caption');
         const crewCaption = document.getElementById('crew-caption');
-        const steuerrad = document.getElementById('steuerrad');
+        
 
         if (anker) {
           anker.classList.remove('drop');
@@ -116,7 +116,7 @@
         if (crew) crew.style.opacity = '0';
         if (capCaption) capCaption.style.opacity = '0';
         if (crewCaption) crewCaption.style.opacity = '0';
-        if (steuerrad) steuerrad.style.opacity = '1';
+      
 
         timeouts.push(setTimeout(()=> {
           if (anker) {
@@ -136,7 +136,7 @@
 
       case 4:
         app.className = 'app';
-        ['steuerrad','captain','crew','captain-caption','crew-caption','anker'].forEach(id => {
+        ['captain','crew','captain-caption','crew-caption','anker'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.style.opacity = '0';
         });

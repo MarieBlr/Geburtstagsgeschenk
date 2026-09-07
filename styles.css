@@ -1,7 +1,7 @@
 :root{
   /* --- Adjustable sizes / speeds --- */
   --arrow-size: 64px; /* size of the corner button */
-  --paper-size: 360px; /* same visual width as rolle.svg */
+  --paper-size: 100px; /* same visual width as rolle.svg */
   --paper-zoom-scale: 1.06; /* small zoom factor for paper */
   --papier-zoom-duration: 700ms; /* paper zoom duration */
   --map-fade-duration: 500ms; /* map fade duration */
@@ -133,7 +133,7 @@ body{background:#fff}
 }
 
 .welle{
-  width:min(110vw, 1200px);
+  width:min(1100vw, 12000px);
   height:auto;
   object-fit:contain;
   display:block;
@@ -150,7 +150,7 @@ body{background:#fff}
   position:absolute;
   left:50%;
   top:50%;
-  width:220px;
+  width:300px;
   max-width:38vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
