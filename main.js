@@ -9,8 +9,9 @@
   // --- Adjustable timing variables (easy to find and edit) ---
   const cfg = {
     papierZoomDuration: 700, // ms -> paper zoom duration
-    mapRevealDelay: 150, // short wait after zoom before map is shown
-    mapVisibleDuration: 1800, // time map stays visible before pin drop
+    paperBeforeGoldDelay: 500, // pause after paper zoom before paper fades
+    goldMapDelay: 300, // short delay before gold background + map reveal
+    mapVisibleDuration: 1400, // time map stays visible before pin drop
     scene2TextDelay: 3000, // ms until heading appears in scene 2
     ankerToPeopleDelay: 2000, // ms until captain appears after anker
     crewDelayAfterCaptain: 1000, // ms until crew appears after captain
@@ -25,9 +26,20 @@
     const papier = document.getElementById('papier');
     const map = document.getElementById('map');
     const pin = document.getElementById('pin');
-    if (papier) papier.classList.remove('zoom');
+    const anker = document.getElementById('anker');
+    if (papier) {
+      papier.classList.remove('zoom');
+      papier.style.opacity = '1';
+    }
     if (map) map.style.opacity = '0';
-    if (pin) pin.classList.remove('drop');
+    if (pin) {
+      pin.classList.remove('drop');
+      pin.style.opacity = '0';
+    }
+    if (anker) {
+      anker.classList.remove('drop');
+      anker.style.opacity = '0';
+    }
   }
 
   function showScene(i){
@@ -41,32 +53,39 @@
         break;
 
       case 1:
-        app.className = 'app bg-gold';
+        app.className = 'app';
+        app.style.backgroundColor = '#ffffff';
         const papier = document.getElementById('papier');
         const map = document.getElementById('map');
         const pin = document.getElementById('pin');
 
-        if (papier) {
-          papier.classList.remove('zoom');
-          papier.style.opacity = '1';
-        }
+        if (papier) papier.classList.remove('zoom');
         if (map) map.style.opacity = '0';
-        if (pin) pin.classList.remove('drop');
+        if (pin) {
+          pin.classList.remove('drop');
+          pin.style.opacity = '0';
+        }
 
         timeouts.push(setTimeout(()=>{
           if (papier) papier.classList.add('zoom');
-        }, 80));
+        }, 120));
 
         timeouts.push(setTimeout(()=>{
-          app.classList.add('bg-gold');
-          app.classList.remove('bg-pale-blue');
-          if (map) map.style.opacity = '1';
           if (papier) papier.style.opacity = '0';
-        }, cfg.papierZoomDuration + cfg.mapRevealDelay));
+        }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay));
 
         timeouts.push(setTimeout(()=>{
-          if (pin) pin.classList.add('drop');
-        }, cfg.papierZoomDuration + cfg.mapRevealDelay + cfg.mapVisibleDuration));
+          app.className = 'app bg-gold';
+          app.style.backgroundColor = '#d4af37';
+          if (map) map.style.opacity = '1';
+        }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay + cfg.goldMapDelay));
+
+        timeouts.push(setTimeout(()=>{
+          if (pin) {
+            pin.style.opacity = '1';
+            pin.classList.add('drop');
+          }
+        }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay + cfg.goldMapDelay + cfg.mapVisibleDuration));
         break;
 
       case 2:
@@ -89,14 +108,22 @@
         const crewCaption = document.getElementById('crew-caption');
         const steuerrad = document.getElementById('steuerrad');
 
-        if (anker) anker.classList.remove('drop');
+        if (anker) {
+          anker.classList.remove('drop');
+          anker.style.opacity = '0';
+        }
         if (captain) captain.style.opacity = '0';
         if (crew) crew.style.opacity = '0';
         if (capCaption) capCaption.style.opacity = '0';
         if (crewCaption) crewCaption.style.opacity = '0';
         if (steuerrad) steuerrad.style.opacity = '1';
 
-        timeouts.push(setTimeout(()=> anker && anker.classList.add('drop'), 80));
+        timeouts.push(setTimeout(()=> {
+          if (anker) {
+            anker.style.opacity = '1';
+            anker.classList.add('drop');
+          }
+        }, 80));
         timeouts.push(setTimeout(()=>{
           if (captain) captain.style.opacity = '1';
           if (capCaption) capCaption.style.opacity = '1';
@@ -131,3 +158,4 @@
   btn.addEventListener('click', () => nextScene());
   window.__story = { showScene, nextScene, cfg };
 })();
+

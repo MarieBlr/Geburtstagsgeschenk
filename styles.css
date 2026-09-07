@@ -73,13 +73,12 @@ body{background:#fff}
   width:var(--paper-size);
   max-width:80vw;
   opacity:1;
-  transform:scale(1);
+  transform:translate(-50%, -50%) scale(1);
   transform-origin:center center;
   transition:transform var(--papier-zoom-duration) ease, opacity var(--map-fade-duration) ease;
   position:absolute;
   left:50%;
   top:50%;
-  transform:translate(-50%, -50%) scale(1);
   z-index:2;
 }
 
@@ -101,8 +100,22 @@ body{background:#fff}
 }
 
 /* pin fly-in */
-.pin{position:absolute;left:50%;top:50%;transform:translate(-50%, -50%) translateY(-240px);transition:transform var(--pin-drop-duration) cubic-bezier(.2,.9,.2,1);z-index:3;max-width:70px}
-.pin.drop{transform:translate(-50%, -50%) translateY(0)}
+.pin{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:76px;
+  max-width:18vw;
+  opacity:0;
+  transform:translate(-50%, -50%) translateY(-220px);
+  transition:transform var(--pin-drop-duration) cubic-bezier(.2,.9,.2,1), opacity .25s ease;
+  z-index:3;
+}
+
+.pin.drop{
+  opacity:1;
+  transform:translate(-50%, -50%) translateY(0);
+}
 
 /* Wave bar at bottom for scene 2 */
 .top-bar{
@@ -134,15 +147,27 @@ body{background:#fff}
 
 /* anker and pin style */
 .anker{
+  position:absolute;
+  left:50%;
+  top:50%;
   width:220px;
   max-width:38vw;
-  position:relative;
-  transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1);
-  transform:translateY(-300%);
+  opacity:0;
+  transform:translate(-50%, -50%) translateY(-220px);
+  transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1), opacity .25s ease;
   z-index:2;
 }
 
-.anker.drop{transform:translateY(0%)}
+.anker.drop{
+  opacity:1;
+  transform:translate(-50%, -50%) translateY(0);
+}
+
+#scene-3 .center-wrap{
+  position:relative;
+  width:100%;
+  height:100%;
+}
 
 /* captain/crew placement */
 .people-row{
