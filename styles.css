@@ -96,8 +96,8 @@ body{background:#fff}
 /* pin fly-in */
 .pin{
   position:absolute;
-  left:55%;
-  top:55%;
+  left:50%;
+  top:50%;
   width:76px;
   max-width:18vw;
   opacity:0;
@@ -114,44 +114,16 @@ body{background:#fff}
 
 
 
-/* Scene 2 */
-.scene-2 .center-wrap {
-  flex-direction: column;
-  transform: translateY(-40px);
-  z-index: 2;
-  margin-top: 60px;
-}
-
-
-.boat {
-  width: 200px;
-  margin-top: 150px;
-  margin-bottom: 20px;
-}
-
-
-#scene2-heading {
-  margin-top: -50 !important;
-  margin-bottom: 40px;
-  opacity: 0;
-  transition: opacity .4s ease;
-  font-size: clamp(28px, 4vw, 52px);
-}
-
-
-.top-bar {
+/* Scene 2 - Text im oberen Drittel, Boot weiter unten */
+.scene-2 .top-bar {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 500px;
-
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-
   overflow: hidden;
   z-index: 0;
 }
@@ -166,6 +138,33 @@ body{background:#fff}
 }
 
 
+.scene-2 .center-wrap {
+  flex-direction: column;
+  position: absolute;
+  top: 25%; /* Text im oberen Drittel */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+
+.boat {
+  width: 200px;
+  margin-top: 180px; /* Boot weiter nach unten */
+  margin-bottom: 20px;
+}
+
+
+#scene2-heading {
+  margin-top: 0 !important;
+  margin-bottom: 30px;
+  opacity: 0;
+  transition: opacity .4s ease;
+  font-size: clamp(28px, 4vw, 52px);
+  text-align: center;
+}
+
+
 /* boat rocking animation */
 .boat{width:200px;transition:transform .2s linear}
 .boat.rock{animation:rock var(--boat-rock-duration) ease-in-out infinite}
@@ -176,8 +175,8 @@ body{background:#fff}
 .anker{
   position:absolute;
   left:50%;
-  top:35%;
-  width:320px;
+  top:45%;
+  width:310px;
   max-width:38vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
