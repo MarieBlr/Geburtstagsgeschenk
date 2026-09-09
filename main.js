@@ -8,12 +8,9 @@
 
   // --- Adjustable timing variables (easy to find and edit) ---
   const cfg = {
-    papierZoomDuration: 700, // ms -> paper zoom duration
-    paperBeforeGoldDelay: 500, // pause after paper zoom before paper fades
-    goldMapDelay: 300, // short delay before gold background + map reveal
     mapVisibleDuration: 1400, // time map stays visible before pin drop
     scene2TextDelay: 3000, // ms until heading appears in scene 2
-    ankerToPeopleDelay: 2000, // ms until captain appears after anker
+    ankerToPeopleDelay: 1000, // ms until captain appears after anker
     crewDelayAfterCaptain: 1000, // ms until crew appears after captain
   };
 
@@ -21,17 +18,10 @@
 
   function resetTransient(){
     app.style.backgroundColor = '';
-    app.classList.remove('bg-gold');
 
-    const papier = document.getElementById('papier');
     const map = document.getElementById('map');
     const pin = document.getElementById('pin');
     const anker = document.getElementById('anker');
-    if (papier) {
-      papier.classList.remove('zoom');
-      papier.style.opacity = '1';
-    }
-    if (map) map.style.opacity = '0';
     if (pin) {
       pin.classList.remove('drop');
       pin.style.opacity = '0';
@@ -45,6 +35,7 @@
   function showScene(i){
     clearAllTimeouts();
     scenes.forEach((s,si)=>{ s.classList.toggle('visible', si===i) });
+    btn.style.display = (i === scenes.length - 1) ? 'none' : 'block';
     resetTransient();
 
     switch(i){
@@ -53,32 +44,15 @@
         break;
 
       case 1:
-        app.className = 'app';
-        app.style.backgroundColor = '#ffffff';
-        const papier = document.getElementById('papier');
+        app.className = 'app bg-pale-blue';
         const map = document.getElementById('map');
         const pin = document.getElementById('pin');
 
-        if (papier) papier.classList.remove('zoom');
         if (map) map.style.opacity = '0';
         if (pin) {
           pin.classList.remove('drop');
           pin.style.opacity = '0';
         }
-
-        timeouts.push(setTimeout(()=>{
-          if (papier) papier.classList.add('zoom');
-        }, 120));
-
-        timeouts.push(setTimeout(()=>{
-          if (papier) papier.style.opacity = '0';
-        }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay));
-
-        timeouts.push(setTimeout(()=>{
-          app.className = 'app bg-gold';
-          app.style.backgroundColor = '#f1d16ac1';
-          if (map) map.style.opacity = '1';
-        }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay + cfg.goldMapDelay));
 
         timeouts.push(setTimeout(()=>{
           if (pin) {
@@ -89,8 +63,7 @@
         break;
 
       case 2:
-        app.className = 'app';
-        app.style.backgroundColor = '#ffffff';
+        app.className = 'app bg-pale-blue';
         const boat = document.getElementById('boat');
         const scene2Heading = document.getElementById('scene2-heading');
         if (boat) boat.classList.remove('rock');
@@ -143,8 +116,7 @@
         break;
 
       case 5:
-        app.className = 'app';
-        app.style.backgroundColor = '#ffffff';
+        app.className = 'app bg-pale-blue';
         break;
     }
   }

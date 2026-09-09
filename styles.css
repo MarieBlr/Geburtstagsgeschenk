@@ -2,8 +2,6 @@
   /* --- Adjustable sizes / speeds --- */
   --arrow-size: 64px; /* size of the corner button */
   --paper-size: 100px; /* same visual width as rolle.svg */
-  --paper-zoom-scale: 1.06; /* small zoom factor for paper */
-  --papier-zoom-duration: 700ms; /* paper zoom duration */
   --map-fade-duration: 500ms; /* map fade duration */
   --pin-drop-duration: 600ms; /* pin fly-in duration */
   --anker-drop-duration: 700ms; /* anker fly-in duration */
@@ -59,31 +57,14 @@ body{background:#fff}
 .scene img {display:block;max-width:90%;max-height:80%}
 
 /* Scene 0: pale light blue background */
-.bg-pale-blue{background:#eaf6ff}
+.bg-pale-blue{background:#dbefff}
 .rolle {width:360px; /* adjustable */}
 
-/* Scene 1: paper in center, slight zoom, then fade to gold + map */
+/* Scene 1: fade to gold + map */
 .scene-1 .center-wrap{
   position:relative;
   width:100%;
   height:100%;
-}
-
-.papier{
-  width:var(--paper-size);
-  max-width:80vw;
-  opacity:1;
-  transform:translate(-50%, -50%) scale(1);
-  transform-origin:center center;
-  transition:transform var(--papier-zoom-duration) ease, opacity var(--map-fade-duration) ease;
-  position:absolute;
-  left:50%;
-  top:50%;
-  z-index:2;
-}
-
-.papier.zoom{
-  transform:translate(-50%, -50%) scale(var(--paper-zoom-scale));
 }
 
 .map{
@@ -150,7 +131,7 @@ body{background:#fff}
 .welle {
   width: 100%;
   max-width: none;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
