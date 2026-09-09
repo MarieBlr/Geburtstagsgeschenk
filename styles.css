@@ -96,8 +96,8 @@ body{background:#fff}
 /* pin fly-in */
 .pin{
   position:absolute;
-  left:50%;
-  top:50%;
+  left:55%;
+  top:55%;
   width:76px;
   max-width:18vw;
   opacity:0;
@@ -125,13 +125,13 @@ body{background:#fff}
 
 .boat {
   width: 200px;
-  margin-top: 80px;
+  margin-top: 150px;
   margin-bottom: 20px;
 }
 
 
 #scene2-heading {
-  margin-top: 0 !important;
+  margin-top: -50 !important;
   margin-bottom: 40px;
   opacity: 0;
   transition: opacity .4s ease;
