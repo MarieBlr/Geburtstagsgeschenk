@@ -22,6 +22,7 @@
     const map = document.getElementById('map');
     const pin = document.getElementById('pin');
     const anker = document.getElementById('anker');
+    if (map) map.style.opacity = '0';
     if (pin) {
       pin.classList.remove('drop');
       pin.style.opacity = '0';
