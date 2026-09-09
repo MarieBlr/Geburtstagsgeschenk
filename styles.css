@@ -85,8 +85,8 @@ body{background:#fff}
   max-width: 90%;
   max-height: 80%;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 47%;
+  top: 48%;
   transform: translate(-50%, -50%);
   display: block;
   object-fit: contain;
@@ -150,13 +150,13 @@ body{background:#fff}
 
 .boat {
   width: 200px;
-  margin-top: 180px; /* Boot weiter nach unten */
+  margin-top: 150px; /* Boot weiter nach unten */
   margin-bottom: 20px;
 }
 
 
 #scene2-heading {
-  margin-top: 0 !important;
+  margin-top: 100 !important;
   margin-bottom: 30px;
   opacity: 0;
   transition: opacity .4s ease;
