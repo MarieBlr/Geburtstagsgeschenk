@@ -96,8 +96,8 @@ body{background:#fff}
 /* pin fly-in */
 .pin{
   position:absolute;
-  left:50%;
-  top:50%;
+  left:47%;
+  top:48%;
   width:76px;
   max-width:18vw;
   opacity:0;
@@ -141,7 +141,7 @@ body{background:#fff}
 .scene-2 .center-wrap {
   flex-direction: column;
   position: absolute;
-  top: 25%; /* Text im oberen Drittel */
+  top: 10%; /* Text im oberen Drittel */
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -150,13 +150,13 @@ body{background:#fff}
 
 .boat {
   width: 200px;
-  margin-top: 150px; /* Boot weiter nach unten */
+  margin-top: 140px; /* Boot weiter nach unten */
   margin-bottom: 20px;
 }
 
 
 #scene2-heading {
-  margin-top: 100 !important;
+  margin-top: -100 !important;
   margin-bottom: 30px;
   opacity: 0;
   transition: opacity .4s ease;
@@ -174,7 +174,7 @@ body{background:#fff}
 /* anker and pin style */
 .anker{
   position:absolute;
-  left:50%;
+  left:55%;
   top:45%;
   width:310px;
   max-width:38vw;
