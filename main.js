@@ -49,7 +49,7 @@
         const map = document.getElementById('map');
         const pin = document.getElementById('pin');
 
-        if (map) map.style.opacity = '0';
+        if (map) map.style.opacity = '1';
         if (pin) {
           pin.classList.remove('drop');
           pin.style.opacity = '0';
@@ -60,7 +60,7 @@
             pin.style.opacity = '1';
             pin.classList.add('drop');
           }
-        }, cfg.papierZoomDuration + cfg.paperBeforeGoldDelay + cfg.goldMapDelay + cfg.mapVisibleDuration));
+        }, 500));
         break;
 
       case 2:
@@ -109,7 +109,7 @@
         break;
 
       case 4:
-        app.className = 'app';
+        app.className = 'app bg-pale-blue';
         ['captain','crew','captain-caption','crew-caption','anker'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.style.opacity = '0';
