@@ -88,15 +88,12 @@ body{background:#fff}
 
 .map{
   width:min(68vw, 760px);
-  max-width:80%;
-  max-height:80%;
-  opacity:0;
-  transition:opacity var(--map-fade-duration) ease;
+  max-width:80vw;
+  max-height:80vh;
   position:absolute;
   left:50%;
   top:50%;
   transform:translate(-50%, -50%);
-  z-index:1;
 }
 
 /* pin fly-in */
@@ -117,27 +114,44 @@ body{background:#fff}
   transform:translate(-50%, -50%) translateY(0);
 }
 
-/* Wave bar at bottom for scene 2 */
-.top-bar{
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:100%;
-  height:110px;
-  background:transparent;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  overflow:visible;
-  z-index:0;
+
+/* Scene 2 */
+.scene-2 .center-wrap {
+  flex-direction: column;
+  transform: translateY(-80px);
+  z-index: 2;
 }
 
-.welle{
-  width:min(1100vw, 12000px);
-  height:auto;
-  object-fit:contain;
-  display:block;
-  transform:translateY(18px);
+.boat {
+  width: 200px;
+}
+
+#scene2-heading {
+  margin-top: 30px !important;
+  opacity: 0;
+  transition: opacity .4s ease;
+  font-size: clamp(28px, 4vw, 52px);
+}
+
+/* Welle */
+.top-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.welle {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  display: block;
 }
 
 /* boat rocking animation */
@@ -179,8 +193,19 @@ body{background:#fff}
   z-index:2;
 }
 
-.person{display:flex;flex-direction:column;align-items:center}
-.person img{width:220px; max-width:26vw}
+.person {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.person img {
+  width: 220px;
+  height: 280px;
+  object-fit: contain;
+}
+
 .caption{margin-top:10px;font-weight:700}
 
 /* boats row scene */
