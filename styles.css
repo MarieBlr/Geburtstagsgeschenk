@@ -85,8 +85,8 @@ body{background:#fff}
   max-width: 90%;
   max-height: 80%;
   position: absolute;
-  left: 47%;
-  top: 48%;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   display: block;
   object-fit: contain;
@@ -96,8 +96,8 @@ body{background:#fff}
 /* pin fly-in */
 .pin{
   position:absolute;
-  left:47%;
-  top:48%;
+  left:50%;
+  top:50%;
   width:76px;
   max-width:18vw;
   opacity:0;
@@ -114,7 +114,7 @@ body{background:#fff}
 
 
 
-/* Scene 2 - Text im oberen Drittel, Boot weiter unten */
+/* Scene 2 - Text und Boot UNABHÄ¨NGIG positioniert mit fixierten Viewport-Einheiten */
 .scene-2 .top-bar {
   position: absolute;
   left: 0;
@@ -138,45 +138,50 @@ body{background:#fff}
 }
 
 
-.scene-2 .center-wrap {
-  flex-direction: column;
-  position: absolute;
-  top: 10%; /* Text im oberen Drittel */
+/* Text - fixierte Position relativ zur Viewport-HÃ¶he */
+#scene2-heading {
+  position: fixed;
+  top: 22vh;    /* 22% der BildschirmhÃ¶he von oben - bleibt immer gleich */
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
-}
-
-
-.boat {
-  width: 200px;
-  margin-top: 140px; /* Boot weiter nach unten */
-  margin-bottom: 20px;
-}
-
-
-#scene2-heading {
-  margin-top: -100 !important;
-  margin-bottom: 30px;
+  margin: 0;
   opacity: 0;
   transition: opacity .4s ease;
-  font-size: clamp(28px, 4vw, 52px);
+  font-size: clamp(24px, 5vw, 48px);
   text-align: center;
+  z-index: 10;
+  width: 90%;
+  max-width: 800px;
 }
 
 
-/* boat rocking animation */
-.boat{width:200px;transition:transform .2s linear}
-.boat.rock{animation:rock var(--boat-rock-duration) ease-in-out infinite}
-@keyframes rock{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(4px) rotate(6deg)}100%{transform:translateY(0) rotate(-6deg)}}
+/* Boot - fixierte Position relativ zur Viewport-HÃ¶he */
+.boat {
+  position: fixed;
+  top: 58vh;    /* 58% der BildschirmhÃ¶he von oben - bleibt immer gleich */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(200px, 40vw); /* Skaliert mit, aber nicht zu groÃ¿ */
+  z-index: 10;
+}
+
+
+/* boat rocking animation - muss fixed-Position berÃ¼cksichtigen */
+.boat{transition:transform .2s linear}
+.boat.rock{animation:rock-fixed var(--boat-rock-duration) ease-in-out infinite}
+@keyframes rock-fixed{
+  0%{transform:translateX(-50%) translateY(0) rotate(-6deg)}
+  50%{transform:translateX(-50%) translateY(4px) rotate(6deg)}
+  100%{transform:translateX(-50%) translateY(0) rotate(-6deg)}
+}
 
 
 /* anker and pin style */
 .anker{
   position:absolute;
-  left:55%;
-  top:45%;
-  width:310px;
+  left:50%;
+  top:35%;
+  width:320px;
   max-width:38vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
@@ -199,14 +204,14 @@ body{background:#fff}
 
 
 #person-left {
-  transform: translateX(28px);
+  transform: translateX(30px);
 }
 
 
 /* captain/crew placement */
 .people-row{
   display:flex;
-  gap:115px;
+  gap:120px;
   align-items:flex-end;
   justify-content:center;
   margin-top:18px;
@@ -215,7 +220,7 @@ body{background:#fff}
 
 
 .person {
-  width: 310px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -223,8 +228,8 @@ body{background:#fff}
 
 
 .person img {
-  width: 310px;
-  height: 385px;
+  width: 300px;
+  height: 370px;
   object-fit: contain;
 }
 
@@ -234,7 +239,7 @@ body{background:#fff}
 
 /* boats row scene */
 .boats-row{display:flex;gap:30px;align-items:center}
-.boats-row img{width:180px}
+.boats-row img{width:160px}
 
 
 /* final white content area */
@@ -245,9 +250,34 @@ body{background:#fff}
 .bg-gold{background:#d4af37}
 
 
-/* small responsiveness */
+/* Responsive adjustments fÃ¼r kleine Bildschirme */
 @media (max-width:600px){
   :root{--arrow-size:48px; --paper-size: 240px}
   .rolle{width:240px}
   .person img{width:140px}
+
+  /* Scene 2 auf Mobile anpassen */
+  #scene2-heading {
+    top: 18vh;
+    font-size: clamp(20px, 6vw, 36px);
+  }
+
+  .boat {
+    top: 52vh;
+    width: min(160px, 45vw);
+  }
+}
+
+
+/* Querformat auf Mobile */
+@media (max-height:500px) and (orientation: landscape){
+  #scene2-heading {
+    top: 15vh;
+    font-size: clamp(18px, 4vw, 32px);
+  }
+
+  .boat {
+    top: 45vh;
+    width: min(140px, 35vw);
+  }
 }
