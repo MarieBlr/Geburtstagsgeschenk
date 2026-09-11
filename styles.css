@@ -109,7 +109,7 @@ body{background:#fff}
 
 .pin.drop{
   opacity:1;
-  transform:translate(-60%, -60%) translateY(0); /* Weiter oben und links nach dem Fall */
+  transform:translate(-62%, -62%) translateY(0); /* Weiter oben und links nach dem Fall */
 }
 
 
@@ -158,7 +158,7 @@ body{background:#fff}
 /* Boot - fixierte Position relativ zur Viewport-HÃ¶he */
 .boat {
   position: fixed;
-  top: 58vh;    /* 58% der BildschirmhÃ¶he von oben - bleibt immer gleich */
+  top: 70vh;    /* 70% der BildschirmhÃ¶he von oben - bleibt immer gleich */
   left: 50%;
   transform: translateX(-50%);
   width: min(200px, 40vw); /* Skaliert mit, aber nicht zu groÃ¿ */
@@ -181,7 +181,7 @@ body{background:#fff}
   position:absolute;
   left:50%;
   top:35%;
-  width:320px;
+  width:120px;
   max-width:38vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
@@ -220,7 +220,7 @@ body{background:#fff}
 
 
 .person {
-  width: 150px; /* Halb so breit (vorher 300px) */
+  width: 200px; /* Halb so breit (vorher 300px) */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -228,8 +228,8 @@ body{background:#fff}
 
 
 .person img {
-  width: 150px; /* Halb so groÃ¿ (vorher 300px) */
-  height: 185px; /* Halb so hoch (vorher 370px) */
+  width: 200px; /* Halb so groÃ¿ (vorher 300px) */
+  height: 245px; /* Halb so hoch (vorher 370px) */
   object-fit: contain;
 }
 
@@ -239,7 +239,7 @@ body{background:#fff}
 
 /* boats row scene - etwas kleiner */
 .boats-row{display:flex;gap:20px;align-items:center}
-.boats-row img{width:120px} /* Etwas kleiner (vorher 160px) */
+.boats-row img{width:140px} /* Etwas kleiner (vorher 160px) */
 
 
 /* final white content area */
