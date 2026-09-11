@@ -330,7 +330,7 @@ body{background:#fff}
 @media (max-width:600px){
   :root{--arrow-size:48px; --paper-size: 240px}
   .rolle{width:240px}
-  .person img{width:120px; height:150px} /* Noch kleiner auf Handy */
+  .person img{width:180px; height:225px} /* Noch kleiner auf Handy */
 
   /* Scene 2 auf Mobile anpassen */
   #scene2-heading {
@@ -349,17 +349,17 @@ body{background:#fff}
   }
 
   .person {
-    width: 120px;
+    width: 180px;
   }
 
   .person img {
-    width: 120px;
-    height: 150px;
+    width: 180px;
+    height: 225px;
   }
 
   /* Scene 4 auf Mobile */
   .boats-row img {
-    width: 90px;
+    width: 110px;
   }
 
   /* Scene 5 auf Mobile */
