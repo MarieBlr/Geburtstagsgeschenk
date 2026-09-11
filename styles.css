@@ -93,7 +93,7 @@ body{background:#fff}
 }
 
 
-/* pin fly-in */
+/* pin fly-in - nach dem Fall etwas weiter oben und links */
 .pin{
   position:absolute;
   left:50%;
@@ -109,7 +109,7 @@ body{background:#fff}
 
 .pin.drop{
   opacity:1;
-  transform:translate(-50%, -50%) translateY(0);
+  transform:translate(-60%, -60%) translateY(0); /* Weiter oben und links nach dem Fall */
 }
 
 
@@ -208,10 +208,10 @@ body{background:#fff}
 }
 
 
-/* captain/crew placement */
+/* captain/crew placement - halb so groÃ¿ fÃ¼r Handy */
 .people-row{
   display:flex;
-  gap:120px;
+  gap:80px;
   align-items:flex-end;
   justify-content:center;
   margin-top:18px;
@@ -220,7 +220,7 @@ body{background:#fff}
 
 
 .person {
-  width: 300px;
+  width: 150px; /* Halb so breit (vorher 300px) */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -228,8 +228,8 @@ body{background:#fff}
 
 
 .person img {
-  width: 300px;
-  height: 370px;
+  width: 150px; /* Halb so groÃ¿ (vorher 300px) */
+  height: 185px; /* Halb so hoch (vorher 370px) */
   object-fit: contain;
 }
 
@@ -237,9 +237,9 @@ body{background:#fff}
 .caption{margin-top:10px;font-weight:700}
 
 
-/* boats row scene */
-.boats-row{display:flex;gap:30px;align-items:center}
-.boats-row img{width:160px}
+/* boats row scene - etwas kleiner */
+.boats-row{display:flex;gap:20px;align-items:center}
+.boats-row img{width:120px} /* Etwas kleiner (vorher 160px) */
 
 
 /* final white content area */
@@ -260,7 +260,7 @@ body{background:#fff}
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
-  background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+  background: #dbefff; /* Helles Blau wie angefordert */
 }
 
 
@@ -287,7 +287,7 @@ body{background:#fff}
   width: 60px;
   height: 60px;
   margin-bottom: 15px;
-  filter: brightness(0) invert(1); /* Macht SVG weiß */
+  filter: brightness(0) invert(1); /* Macht SVG weiÃ¿ */
 }
 
 
@@ -332,11 +332,11 @@ body{background:#fff}
 }
 
 
-/* Responsive für Scene 5 */
+/* Responsive fÃ¼r Scene 5 */
 @media (max-width:600px){
   :root{--arrow-size:48px; --paper-size: 240px}
   .rolle{width:240px}
-  .person img{width:140px}
+  .person img{width:120px; height:150px} /* Noch kleiner auf Handy */
 
   /* Scene 2 auf Mobile anpassen */
   #scene2-heading {
@@ -347,6 +347,25 @@ body{background:#fff}
   .boat {
     top: 52vh;
     width: min(160px, 45vw);
+  }
+
+  /* Scene 3 auf Mobile */
+  .people-row {
+    gap: 50px;
+  }
+
+  .person {
+    width: 120px;
+  }
+
+  .person img {
+    width: 120px;
+    height: 150px;
+  }
+
+  /* Scene 4 auf Mobile */
+  .boats-row img {
+    width: 90px;
   }
 
   /* Scene 5 auf Mobile */
@@ -389,5 +408,24 @@ body{background:#fff}
   .boat {
     top: 45vh;
     width: min(140px, 35vw);
+  }
+
+  /* Scene 3 im Querformat */
+  .people-row {
+    gap: 40px;
+  }
+
+  .person {
+    width: 100px;
+  }
+
+  .person img {
+    width: 100px;
+    height: 125px;
+  }
+
+  /* Scene 4 im Querformat */
+  .boats-row img {
+    width: 80px;
   }
 }
