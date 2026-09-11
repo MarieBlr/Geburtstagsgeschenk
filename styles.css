@@ -179,7 +179,7 @@ body{background:#fff}
 .anker{
   position:absolute;
   left:50%;
-  top:35%;
+  top:50%;
   width:120px;
   max-width:20vw;
   opacity:0;
@@ -202,11 +202,6 @@ body{background:#fff}
 }
 
 
-#person-left {
-  transform: translateX(30px);
-}
-
-
 /* captain/crew placement - halb so groÃ¿ fÃ¼r Handy */
 .people-row{
   display:flex;
@@ -219,7 +214,7 @@ body{background:#fff}
 
 
 .person {
-  width: 250px; /* Halb so breit (vorher 300px) */
+  width: 400px; /* Halb so breit (vorher 300px) */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -227,8 +222,8 @@ body{background:#fff}
 
 
 .person img {
-  width: 250px; /* Halb so groÃ¿ (vorher 300px) */
-  height: 300px; /* Halb so hoch (vorher 370px) */
+  width: 400px; /* Halb so groÃ¿ (vorher 300px) */
+  height: 500px; /* Halb so hoch (vorher 370px) */
   object-fit: contain;
 }
 
