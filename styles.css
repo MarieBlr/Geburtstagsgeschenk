@@ -1,7 +1,6 @@
 :root{
   /* --- Adjustable sizes / speeds --- */
   --arrow-size: 64px; /* size of the corner button */
-  --paper-size: 100px; /* same visual width as rolle.svg */
   --map-fade-duration: 500ms; /* map fade duration */
   --pin-drop-duration: 600ms; /* pin fly-in duration */
   --anker-drop-duration: 700ms; /* anker fly-in duration */
@@ -109,7 +108,7 @@ body{background:#fff}
 
 .pin.drop{
   opacity:1;
-  transform:translate(-62%, -62%) translateY(0); /* Weiter oben und links nach dem Fall */
+  transform:translate(-64%, -62%) translateY(0); /* Weiter oben und links nach dem Fall */
 }
 
 
@@ -146,7 +145,7 @@ body{background:#fff}
   transform: translateX(-50%);
   margin: 0;
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .2s ease;
   font-size: clamp(24px, 5vw, 48px);
   text-align: center;
   z-index: 10;
@@ -182,7 +181,7 @@ body{background:#fff}
   left:50%;
   top:35%;
   width:120px;
-  max-width:38vw;
+  max-width:20vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
   transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1), opacity .25s ease;
@@ -211,7 +210,7 @@ body{background:#fff}
 /* captain/crew placement - halb so groÃ¿ fÃ¼r Handy */
 .people-row{
   display:flex;
-  gap:80px;
+  gap:120px;
   align-items:flex-end;
   justify-content:center;
   margin-top:18px;
@@ -220,7 +219,7 @@ body{background:#fff}
 
 
 .person {
-  width: 200px; /* Halb so breit (vorher 300px) */
+  width: 250px; /* Halb so breit (vorher 300px) */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -228,8 +227,8 @@ body{background:#fff}
 
 
 .person img {
-  width: 200px; /* Halb so groÃ¿ (vorher 300px) */
-  height: 245px; /* Halb so hoch (vorher 370px) */
+  width: 250px; /* Halb so groÃ¿ (vorher 300px) */
+  height: 300px; /* Halb so hoch (vorher 370px) */
   object-fit: contain;
 }
 
@@ -239,7 +238,7 @@ body{background:#fff}
 
 /* boats row scene - etwas kleiner */
 .boats-row{display:flex;gap:20px;align-items:center}
-.boats-row img{width:140px} /* Etwas kleiner (vorher 160px) */
+.boats-row img{width:150px} /* Etwas kleiner (vorher 160px) */
 
 
 /* final white content area */
