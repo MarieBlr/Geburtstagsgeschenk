@@ -9,6 +9,7 @@
 <body>
   <div class="app bg-pale-blue" id="app">
 
+
     <!-- Scene 0: pale light blue + rolle.svg -->
     <section class="scene scene-0 visible" id="scene-0">
       <div class="center-wrap">
@@ -16,6 +17,7 @@
         <img src="grafiken/rolle.svg" alt="Rolle" class="rolle" id="rolle">
       </div>
     </section>
+
 
     <!-- Scene 1: map -> pin drop -->
     <section class="scene scene-1" id="scene-1">
@@ -25,6 +27,7 @@
       </div>
     </section>
 
+
     <!-- Scene 2: top wave bar and rocking boat + delayed heading -->
     <section class="scene scene-2" id="scene-2">
       <div class="top-bar">
@@ -32,9 +35,10 @@
       </div>
       <div class="center-wrap" style="flex-direction:column;">
         <img src="grafiken/boot.svg" alt="Boot" id="boat" class="boat">
-        <h2 id="scene2-heading" style="margin-top:20px;opacity:0;transition:opacity .4s ease">Ein Tag auf dem Wasser</h2>
+        <h2 id="scene2-heading" style="margin-top:20px;opacity:0;transition:opacity .4s ease">Hier steht später ein Text</h2>
       </div>
     </section>
+
 
     <!-- Scene 3: pale blue background + anker drop -> captain & crew appear with captions; include steuerrad to be removed next -->
     <section class="scene scene-3" id="scene-3">
@@ -52,10 +56,11 @@
       </div>
     </section>
 
+
     <!-- Scene 4: show a heading and a row of three boats -->
     <section class="scene scene-4" id="scene-4">
       <div class="center-wrap" style="flex-direction:column;">
-        <h2 id="scene4-heading">Du Wählst das Boot</h2>
+        <h2 id="scene4-heading">Du WÃ¤hlst das Boot</h2>
         <div class="boats-row" style="margin-top:25px">
           <img src="grafiken/boot.svg" alt="Boot">
           <img src="grafiken/ruderboot.svg" alt="Ruderboot">
@@ -64,20 +69,43 @@
       </div>
     </section>
 
-    <!-- Scene 5: blank white content area for further text/images -->
+
+    <!-- Scene 5: Gutschein mit Details -->
     <section class="scene scene-5" id="scene-5">
-      <div class="final-content">
-        <h2>Platz für weitere Inhalte</h2>
-        <p>Hier kannst du zusätzlich Text, Bilder oder Links einfügen.</p>
+      <div class="voucher-container">
+        <div class="voucher-card">
+          <div class="voucher-header">
+            <img src="grafiken/anker.svg" alt="Anker" class="voucher-icon">
+            <h1>Gutschein fÃ¼r 1x Boot Ausleihen</h1>
+          </div>
+
+          <div class="voucher-body">
+            <div class="info-row">
+              <span class="info-label">Ort:</span>
+              <span class="info-value">Konstanz</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Datum:</span>
+              <span class="info-value">Wann immer es passt</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">GÃ¼ltig fÃ¼r:</span>
+              <span class="info-value">Henri</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+
   </div>
+
 
   <!-- persistent arrow button bottom-right -->
   <button type="button" class="corner-arrow" id="next-button" title="Weiter" aria-label="Weiter">
     Weiter
   </button>
+
 
   <script src="main.js"></script>
 </body>
