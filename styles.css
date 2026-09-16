@@ -180,8 +180,8 @@ body{background:#fff}
   position:absolute;
   left:50%;
   top:50%;
-  width:150px;
-  max-width: 35vw;
+  width:190px;
+  max-width: 45vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
   transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1), opacity .25s ease;
