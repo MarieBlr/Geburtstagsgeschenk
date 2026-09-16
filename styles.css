@@ -108,7 +108,7 @@ body{background:#fff}
 
 .pin.drop{
   opacity:1;
-  transform:translate(-64%, -62%) translateY(0); /* Weiter oben und links nach dem Fall */
+  transform:translate(-65%, -63%) translateY(0); /* Weiter oben und links nach dem Fall */
 }
 
 
@@ -180,8 +180,8 @@ body{background:#fff}
   position:absolute;
   left:50%;
   top:50%;
-  width:120px;
-  max-width: 30vw;
+  width:150px;
+  max-width: 35vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
   transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1), opacity .25s ease;

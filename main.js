@@ -9,7 +9,7 @@
   // --- Adjustable timing variables (easy to find and edit) ---
   const cfg = {
     mapVisibleDuration: 1400, // time map stays visible before pin drop
-    scene2TextDelay: 3000, // ms until heading appears in scene 2
+    scene2TextDelay: 1500, // ms until heading appears in scene 2
     ankerToPeopleDelay: 1000, // ms until captain appears after anker
     crewDelayAfterCaptain: 1000, // ms until crew appears after captain
   };
