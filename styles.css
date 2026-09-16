@@ -181,7 +181,7 @@ body{background:#fff}
   left:50%;
   top:50%;
   width:120px;
-  max-width:20vw;
+  max-width: 30vw;
   opacity:0;
   transform:translate(-50%, -50%) translateY(-220px);
   transition:transform var(--anker-drop-duration) cubic-bezier(.2,.9,.2,1), opacity .25s ease;
